@@ -298,19 +298,16 @@ plot(metadata_tb.pca)
 #### simple PCA plot
 biplot(metadata_tb.pca, choices = 1:2, scale = 1)
 
-
 ## Better PCA plot
-metadata_tb$Cluster <- sample_data(my_data_prop_sqrt_not_na)$Cluster
+metadata_tb$Cluster <- sample_data(my_data_prop_sqrt_not_na)$bCluster
 row.names(metadata_tb)
 row.names(sample_data(my_data_prop_sqrt_not_na))
 library(ggbiplot)
 ggbiplot(metadata_tb.pca, 
          var.axes = TRUE, # Draw arrows for the variables?
          obs.scale = 1, var.scale = 1, 
-color=metadata_tb$Cluster,
-        # labels=rownames(metadata_tb), 
-groups=metadata_tb$Cluster) +
-#geom_point(aes(color=Cluster), data=metadata_tb.pca) +
+  color=metadata_tb$Cluster,
+  groups=metadata_tb$Cluster) +
   scale_colour_manual(name="Cluster", values= set_colors_cluster) +
   theme_bw() +
   theme(legend.position = "right")
